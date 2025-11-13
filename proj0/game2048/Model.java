@@ -159,6 +159,30 @@ public class Model extends Observable {
      */
     public static boolean atLeastOneMoveExists(Board b) {
         // TODO: Fill in this function.
+        for (int col = 0; col < b.size(); col += 1) {
+            for (int row = 0; row < b.size(); row += 1) {
+                /** If there is at least an empty tile, then return true */
+                if(b.tile(col, row)==null){
+                    return true;
+                }
+                /** If there is at least one tile(except the tiles in the last row),
+                 * which has the same value as its immediate tile in the vertical direction,
+                 * then return true */
+                if(row < b.size()-1){
+                    if (b.tile(col, row).value()==b.tile(col,row+1).value()){
+                        return true;
+                    }
+                }
+                /** If there is at least one tile(except the tiles in the last column),
+                 * which has the same value as its immediate tile in the horizontal direction,
+                 * then return true */
+                if (col < b.size()-1){
+                    if (b.tile(col, row).value()==b.tile(col+1, row).value()){
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
     }
 
